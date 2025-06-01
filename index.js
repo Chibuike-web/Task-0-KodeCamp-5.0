@@ -12,9 +12,6 @@ const fetchData = async () => {
 		const data = await res.json();
 		allCountries = data;
 		createList(data);
-
-		filterBtn.addEventListener("change", handleFilterAndSearch);
-		searchInput.addEventListener("input", handleFilterAndSearch);
 	} catch (error) {
 		console.log("Issue fetching lists", error);
 	}
@@ -24,14 +21,26 @@ const handleFilterAndSearch = () => {
 	const regionValue = filterBtn.value;
 	const searchValue = searchInput.value.toLowerCase();
 
-	const filtered = allCountries.filter((country) => {
-		const matchesRegion = regionValue ? country.region === regionValue : true;
-		const matchesSearch = country.name.common.toLowerCase().includes(searchValue);
-		return matchesRegion && matchesSearch;
-	});
+	try {
+		const filtered = allCountries.filter((country) => {
+			const name = country?.name?.common?.toLowerCase?.() || "";
+			const matchesRegion = regionValue ? country.region === regionValue : true;
+			const matchesSearch = name.includes(searchValue);
+			return matchesRegion && matchesSearch;
+		});
 
-	countryList.innerHTML = "";
-	createList(filtered);
+		countryList.innerHTML = "";
+
+		if (filtered.length === 0) {
+			countryList.innerHTML = `
+      <p class="not-found-message">No countries found.</p>`;
+		} else {
+			createList(filtered);
+		}
+	} catch (err) {
+		console.error("Search/filter error:", err);
+		countryList.innerHTML = `<p class="error-message">Something went wrong while filtering. Try again later.</p>`;
+	}
 };
 
 const createList = (countries) => {
@@ -56,3 +65,5 @@ const createList = (countries) => {
 };
 
 fetchData();
+filterBtn.addEventListener("change", handleFilterAndSearch);
+searchInput.addEventListener("input", handleFilterAndSearch);
