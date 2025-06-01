@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>REST Countries API with color theme switcher</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<nav class="container">
+			<header>
+				<h1>Where in the world</h1>
+				<figure class="toggle-theme">
+					<img src="\./assets/moon-outline.svg" alt="Moon Icon" />
+					<span>Dark Mode</span>
+				</figure>
+			</header>
+		</nav>
+		<section class="container">
+			<div class="search-input-container">
+				<img src="./assets/search-outline.svg" alt="" />
+				<input
+					type="search"
+					name=""
+					id=""
+					class="search-input"
+					placeholder="Search for a country..."
+				/>
+			</div>
+			<div class="filter">
+				<span></span>
+				<div>
+					<span>Asia</span><span>America</span><span></span><span></span><span></span><span></span
+					><span></span>
+				</div>
+			</div>
+		</section>
+		<section>
+			<ul id="country-list"></ul>
+		</section>
+	</body>
+	<script src="./index.js" type="module"></script>
+</html>
