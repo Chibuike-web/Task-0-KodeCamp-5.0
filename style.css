@@ -27,6 +27,9 @@ button {
 	--input-bg: hsl(0, 100%, 100%);
 	--input-color: hsl(0, 0%, 50%);
 	--background-color: hsl(0, 0%, 99%);
+	--theme-moon-url: url("./assets/moon-outline.svg");
+	--theme-search-url: url("./assets/search-outline.svg");
+	--theme-chevron-url: url("./assets/chevron-down-outline.svg");
 }
 
 .dark-mode {
@@ -35,6 +38,9 @@ button {
 	--input-bg: hsl(209, 23%, 22%);
 	--input-color: hsl(0, 100%, 100%);
 	--background-color: hsl(207, 26%, 17%);
+	--theme-moon-url: url("./assets/moon.svg");
+	--theme-search-url: url("./assets/search-outline-dark.svg");
+	--theme-chevron-url: url("./assets/chevron-down-outline-dark.svg");
 }
 
 nav {
@@ -60,10 +66,20 @@ nav {
 	display: flex;
 	align-items: center;
 	gap: 9px;
+	color: var(--text-color);
+	font-size: 16px;
 
-	img {
-		width: 100%;
-		max-inline-size: 24px;
+	figure {
+		width: 24px;
+		height: 24px;
+		background-image: var(--theme-moon-url);
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+	span {
+		display: flex;
+		flex-shrink: 0;
 	}
 }
 
@@ -81,21 +97,25 @@ nav {
 		width: 100%;
 		border-radius: 8px;
 		gap: 14px;
-		img {
-			display: flex;
-			flex-shrink: 0;
-			width: 100%;
-			max-inline-size: 24px;
+		figure {
+			width: 24px;
+			height: 24px;
+			background-image: var(--theme-search-url);
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
 		}
 		.search-input {
 			border: none;
 			outline: none;
 			background-color: transparent;
 			width: 100%;
+			color: var(--text-color);
 
 			&::placeholder {
 				font-family: "Nunito Sans";
 				font-size: 14px;
+				color: var(--text-color);
 			}
 		}
 
@@ -134,7 +154,7 @@ nav {
 
 .custom-select::after {
 	content: "";
-	background-image: url("./assets/chevron-down-outline.svg");
+	background-image: var(--theme-chevron-url);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
@@ -157,6 +177,7 @@ nav {
 	padding-inline: 16px;
 	box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
 	border-radius: 8px;
+	color: var(--text-color);
 }
 
 #country-list {

@@ -69,19 +69,15 @@ filterBtn.addEventListener("change", handleFilterAndSearch);
 searchInput.addEventListener("input", handleFilterAndSearch);
 
 const toggleTheme = document.querySelector(".toggle-theme");
-const darkMode = localStorage.getItem("darkMode");
-let isEnabled = darkMode === "enabled";
+let isDarkMode = localStorage.getItem("darkMode") === "true";
 
-if (isEnabled) {
-	document.body.classList.add("dark-mode");
+if (isDarkMode) {
+	document.body.classList.add("dark-mode", isDarkMode);
 }
-toggleTheme.addEventListener("click", themeToggler);
 
-function themeToggler(e) {
+toggleTheme.addEventListener("click", function (e) {
 	e.preventDefault();
-
-	isEnabled = !isEnabled;
-	console.log("click");
-	document.body.classList.toggle("dark-mode", isEnabled);
-	localStorage.setItem("darkMode", isEnabled ? "enabled" : "disabled");
-}
+	isDarkMode = !isDarkMode;
+	document.body.classList.toggle("dark-mode", isDarkMode);
+	localStorage.setItem("darkMode", isDarkMode);
+});
