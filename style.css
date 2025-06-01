@@ -107,7 +107,12 @@ section {
 	margin-block-start: 32px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		gap: 20px;
+		align-items: start;
+	}
 }
 
 .filter {

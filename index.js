@@ -1,5 +1,7 @@
 const countryList = document.getElementById("country-list");
 const filterBtn = document.querySelector(".filter");
+const searchInput = document.querySelector(".search-input");
+let allCountries = [];
 
 const fetchData = async () => {
 	try {
@@ -8,18 +10,28 @@ const fetchData = async () => {
 			throw new Error("Issue fetching data");
 		}
 		const data = await res.json();
+		allCountries = data;
 		createList(data);
-		filterBtn.addEventListener("change", () => filterList(data));
+
+		filterBtn.addEventListener("change", handleFilterAndSearch);
+		searchInput.addEventListener("input", handleFilterAndSearch);
 	} catch (error) {
 		console.log("Issue fetching lists", error);
 	}
 };
 
-const filterList = (data) => {
-	const filterValue = filterBtn.value;
-	const result = data.filter((item) => item.region === filterValue);
+const handleFilterAndSearch = () => {
+	const regionValue = filterBtn.value;
+	const searchValue = searchInput.value.toLowerCase();
+
+	const filtered = allCountries.filter((country) => {
+		const matchesRegion = regionValue ? country.region === regionValue : true;
+		const matchesSearch = country.name.common.toLowerCase().includes(searchValue);
+		return matchesRegion && matchesSearch;
+	});
+
 	countryList.innerHTML = "";
-	createList(filterValue ? result : data);
+	createList(filtered);
 };
 
 const createList = (countries) => {
