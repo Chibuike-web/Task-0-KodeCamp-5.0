@@ -16,33 +16,37 @@
 		<nav>
 			<header>
 				<h1>Where in the world</h1>
-				<figure class="toggle-theme">
+				<button class="toggle-theme">
 					<img src="./assets/moon-outline.svg" alt="Moon Icon" />
 					<span>Dark Mode</span>
-				</figure>
+				</button>
 			</header>
 		</nav>
-		<section class="wrapper">
-			<div class="search-input-container">
-				<img src="./assets/search-outline.svg" alt="" />
-				<input
-					type="search"
-					name=""
-					id=""
-					class="search-input"
-					placeholder="Search for a country..."
-				/>
+		<section class="container">
+			<div class="wrapper">
+				<div class="search-input-container">
+					<img src="./assets/search-outline.svg" alt="" />
+					<input
+						type="search"
+						name=""
+						id=""
+						class="search-input"
+						placeholder="Search for a country..."
+					/>
+				</div>
+				<div class="custom-select">
+					<select class="filter">
+						<option value="">Filter By Region</option>
+						<option value="Africa">Africa</option>
+						<option value="Americas">Americas</option>
+						<option value="Asia">Asia</option>
+						<option value="Europe">Europe</option>
+						<option value="Oceania">Oceania</option>
+					</select>
+				</div>
 			</div>
-			<select class="filter">
-				<option value="">Filter By Region</option>
-				<option value="Africa">Africa</option>
-				<option value="Americas">Americas</option>
-				<option value="Asia">Asia</option>
-				<option value="Europe">Europe</option>
-				<option value="Oceania">Oceania</option>
-			</select>
 		</section>
-		<section>
+		<section class="container">
 			<ul id="country-list"></ul>
 		</section>
 	</body>

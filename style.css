@@ -15,6 +15,12 @@ body {
 	color: inherit;
 }
 
+button {
+	background: transparent;
+	outline: none;
+	border: none;
+}
+
 :root {
 	--nav-color: hsl(0, 100%, 100%);
 	--text-color: hsl(200, 15%, 8%);
@@ -23,20 +29,18 @@ body {
 	--background-color: hsl(0, 0%, 99%);
 }
 
-dark-mode {
-	:root {
-		--nav-color: hsl(209, 23%, 22%);
-		--text-color: hsl(0, 100%, 100%);
-		--input-bg: hsl(209, 23%, 22%);
-		--input-color: hsl(0, 100%, 100%);
-		--background-color: hsl(207, 26%, 17%);
-	}
+.dark-mode {
+	--nav-color: hsl(209, 23%, 22%);
+	--text-color: hsl(0, 100%, 100%);
+	--input-bg: hsl(209, 23%, 22%);
+	--input-color: hsl(0, 100%, 100%);
+	--background-color: hsl(207, 26%, 17%);
 }
 
 nav {
 	width: 100%;
 	background-color: var(--nav-color);
-	box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	padding-inline: 16px;
 	header {
 		max-inline-size: 1280px;
@@ -63,14 +67,12 @@ nav {
 	}
 }
 
-section {
-	max-inline-size: 1280px;
-	margin-inline: auto;
-	width: 100%;
+.container {
 	padding-inline: 16px;
+	width: 100%;
 	padding-bottom: 24px;
 	.search-input-container {
-		box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 		padding-block: 16px;
 		padding-inline: 14px;
 		display: flex;
@@ -103,11 +105,18 @@ section {
 	}
 }
 
+#country-list {
+	max-inline-size: 1280px;
+	margin-inline: auto;
+}
+
 .wrapper {
 	margin-block-start: 32px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	max-inline-size: 1280px;
+	margin-inline: auto;
 
 	@media (max-width: 768px) {
 		flex-direction: column;
@@ -116,13 +125,34 @@ section {
 	}
 }
 
+.custom-select {
+	width: 100%;
+	max-width: 250px;
+	position: relative;
+	display: inline-block;
+}
+
+.custom-select::after {
+	content: "";
+	background-image: url("./assets/chevron-down-outline.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	position: absolute;
+	pointer-events: none;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	width: 24px;
+	height: 24px;
+}
+
 .filter {
 	appearance: none;
 	outline: none;
 	border: none;
 	background-color: var(--input-bg);
 	width: 100%;
-	max-width: 250px;
 	height: 56px;
 	padding-inline: 16px;
 	box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
@@ -137,7 +167,7 @@ section {
 	gap: 74px;
 
 	.country-card {
-		box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 		border-radius: 8px;
 		overflow: hidden;
 	}
@@ -172,7 +202,7 @@ section {
 .back-btn {
 	width: fit-content;
 	background-color: white;
-	box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -186,6 +216,13 @@ section {
 		width: 100%;
 		max-width: 24px;
 	}
+}
+
+.wrapper-details {
+	display: flex;
+	flex-direction: column;
+	max-inline-size: 1280px;
+	margin-inline: auto;
 }
 
 #country-details {
@@ -248,7 +285,7 @@ section {
 .border-btn {
 	width: fit-content;
 	background-color: white;
-	box-shadow: 0px 4px 8px rgba(32, 44, 16, 0.05);
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
 	justify-content: center;

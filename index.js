@@ -67,3 +67,21 @@ const createList = (countries) => {
 fetchData();
 filterBtn.addEventListener("change", handleFilterAndSearch);
 searchInput.addEventListener("input", handleFilterAndSearch);
+
+const toggleTheme = document.querySelector(".toggle-theme");
+const darkMode = localStorage.getItem("darkMode");
+let isEnabled = darkMode === "enabled";
+
+if (isEnabled) {
+	document.body.classList.add("dark-mode");
+}
+toggleTheme.addEventListener("click", themeToggler);
+
+function themeToggler(e) {
+	e.preventDefault();
+
+	isEnabled = !isEnabled;
+	console.log("click");
+	document.body.classList.toggle("dark-mode", isEnabled);
+	localStorage.setItem("darkMode", isEnabled ? "enabled" : "disabled");
+}
