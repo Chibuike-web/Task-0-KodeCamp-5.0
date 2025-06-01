@@ -7,6 +7,7 @@
 body {
 	font-family: "Nunito Sans";
 	background-color: var(--background-color);
+	color: var(--text-color);
 }
 
 * a {
@@ -36,6 +37,7 @@ nav {
 	width: 100%;
 	background-color: var(--nav-color);
 	box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
+	padding-inline: 16px;
 	header {
 		max-inline-size: 1280px;
 		width: 100%;
@@ -46,7 +48,6 @@ nav {
 		margin-inline: auto;
 		h1 {
 			font-weight: 800;
-			color: var(--text-color);
 		}
 	}
 }
@@ -66,6 +67,7 @@ section {
 	max-inline-size: 1280px;
 	margin-inline: auto;
 	width: 100%;
+	padding-inline: 16px;
 	.search-input-container {
 		box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
 		margin-block-start: 32px;
@@ -103,7 +105,7 @@ section {
 #country-list {
 	margin-block: 32px;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+	grid-template-columns: repeat(4, 1fr);
 	width: 100%;
 	gap: 74px;
 
@@ -129,4 +131,93 @@ section {
 		padding-block-start: 24px;
 		padding-block-end: 48px;
 	}
+}
+
+/* Details Styling */
+
+.back-btn {
+	width: fit-content;
+	background-color: white;
+	box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-inline: 24px;
+	padding-block: 8px;
+	gap: 12px;
+	margin-block: 64px;
+	border-radius: 6px;
+
+	img {
+		width: 100%;
+		max-width: 24px;
+	}
+}
+
+#country-details {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	gap: 118px;
+
+	figure {
+		width: 560px;
+		height: 400px;
+		display: flex;
+		flex-shrink: 0;
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+}
+
+.content-container {
+	h2 {
+		font-weight: 800;
+		margin-bottom: 24px;
+	}
+	.details-columns {
+		display: flex;
+		gap: 133px;
+		align-items: start;
+
+		div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			width: 100%;
+		}
+	}
+}
+
+.border-countries {
+	margin-top: 64px;
+	display: flex;
+	align-items: start;
+	gap: 24px;
+
+	strong {
+		flex-shrink: 0;
+		padding-block: 12px;
+	}
+}
+
+.borders-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+.border-btn {
+	width: fit-content;
+	background-color: white;
+	box-shadow: 0px 4px 8px rgba(32, 44, 16, 0.05);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-inline: 24px;
+	padding-block: 8px;
+	border-radius: 6px;
 }

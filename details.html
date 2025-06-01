@@ -8,10 +8,9 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200..1000;1,200..1000&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
 		<nav class="container">
@@ -25,16 +24,16 @@
 		</nav>
 
 		<section class="container">
-			<a href="index.html">← Back</a>
+			<a href="index.html" class="back-btn">
+				<img src="assets/arrow-back-outline.svg" alt="Back Arrow Icon" />
+				Back
+			</a>
 			<div id="country-details"></div>
 		</section>
-
-		<!-- Javascript -->
 
 		<script type="module">
 			const container = document.getElementById("country-details");
 			const urlParams = new URLSearchParams(window.location.search);
-			console.log(urlParams);
 			const code = urlParams.get("code");
 
 			const fetchCountry = async () => {
@@ -43,17 +42,64 @@
 					const data = await res.json();
 					const country = data[0];
 
+					const currencies = country.currencies
+						? Object.values(country.currencies)
+								.map((c) => c.name)
+								.join(", ")
+						: "N/A";
+
+					const nativeName = country.name.nativeName
+						? Object.values(country.name.nativeName)[0].common
+						: country.name.common;
+
 					container.innerHTML = `
-          <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" />
-          <h2>${country.name.common}</h2>
-          <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
-          <p><strong>Region:</strong> ${country.region}</p>
-          <p><strong>Capital:</strong> ${country.capital?.[0] || "N/A"}</p>
-          <p><strong>Subregion:</strong> ${country.subregion || "N/A"}</p>
-          <p><strong>Languages:</strong> ${Object.values(country.languages || {}).join(", ")}</p>
-        `;
+				<figure class="image-container">
+					<img src="${country.flags.svg}" alt="Flag of ${country.name.common}" />
+				</figure>
+				<div class="content-container">
+					<h2>${country.name.common}</h2>
+					<div class="details-columns">
+						<div>
+							<p><strong>Native Name:</strong> ${nativeName}</p>
+							<p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
+							<p><strong>Region:</strong> ${country.region}</p>
+							<p><strong>Subregion:</strong> ${country.subregion || "N/A"}</p>
+							<p><strong>Capital:</strong> ${country.capital?.[0] || "N/A"}</p>
+						</div>
+						<div>
+							<p><strong>Top Level Domain:</strong> ${country.tld?.join(", ") || "N/A"}</p>
+							<p><strong>Currencies:</strong> ${currencies}</p>
+							<p><strong>Languages:</strong> ${Object.values(country.languages || {}).join(", ")}</p>
+						</div>
+					</div>
+					<div class="border-countries">
+						<strong>Border Countries:</strong> <span class="borders-list">Loading...</span>
+					</div>
+				</div>
+			`;
+
+					if (country.borders && country.borders.length > 0) {
+						const bordersRes = await fetch(
+							`https://restcountries.com/v3.1/alpha?codes=${country.borders.join(",")}`
+						);
+						const bordersData = await bordersRes.json();
+
+						const bordersList = container.querySelector(".borders-list");
+						bordersList.innerHTML = "";
+
+						bordersData.forEach((borderCountry) => {
+							const span = document.createElement("a");
+							span.className = "border-btn";
+							span.href = `details.html?code=${borderCountry.cca3}`;
+							span.textContent = borderCountry.name.common;
+							bordersList.appendChild(span);
+						});
+					} else {
+						container.querySelector(".borders-list").textContent = "None";
+					}
 				} catch (error) {
 					container.innerHTML = "<p>Could not load country data.</p>";
+					console.error(error);
 				}
 			};
 

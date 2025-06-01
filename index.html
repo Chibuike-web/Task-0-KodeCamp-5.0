@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<nav class="container">
+		<nav>
 			<header>
 				<h1>Where in the world</h1>
 				<figure class="toggle-theme">
@@ -22,7 +22,7 @@
 				</figure>
 			</header>
 		</nav>
-		<section class="container">
+		<section>
 			<div class="search-input-container">
 				<img src="./assets/search-outline.svg" alt="" />
 				<input
@@ -63,7 +63,7 @@
 				list.classList.add("country-card");
 
 				list.innerHTML = `
-		      <a href="details.html?code=${country.cca3}">
+		   <a href="details.html?code=${country.cca3}">
 		       <figure> <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" /></figure>
 		        <div class="content">
 		          <h3 class="heading">${country.name.common}</h3>
