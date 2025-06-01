@@ -196,7 +196,7 @@ section {
 .border-countries {
 	margin-top: 64px;
 	display: flex;
-	align-items: start;
+	align-items: center;
 	gap: 24px;
 
 	strong {
@@ -207,6 +207,7 @@ section {
 
 .borders-list {
 	display: flex;
+	align-items: center;
 	flex-wrap: wrap;
 	gap: 12px;
 }

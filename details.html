@@ -73,10 +73,13 @@
 						</div>
 					</div>
 					<div class="border-countries">
-						<strong>Border Countries:</strong> <span class="borders-list">Loading...</span>
+						<strong>Border Countries:</strong> <div class="borders-list">Loading...</div>
 					</div>
 				</div>
 			`;
+
+					const bordersList = container.querySelector(".borders-list");
+					const borderCountries = container.querySelector(".border-countries");
 
 					if (country.borders && country.borders.length > 0) {
 						const bordersRes = await fetch(
@@ -84,8 +87,8 @@
 						);
 						const bordersData = await bordersRes.json();
 
-						const bordersList = container.querySelector(".borders-list");
 						bordersList.innerHTML = "";
+						borderCountries.style.alignItems = "flex-start";
 
 						bordersData.forEach((borderCountry) => {
 							const span = document.createElement("a");
@@ -95,7 +98,8 @@
 							bordersList.appendChild(span);
 						});
 					} else {
-						container.querySelector(".borders-list").textContent = "None";
+						bordersList.textContent = "None";
+						borderCountries.style.alignItems = "";
 					}
 				} catch (error) {
 					container.innerHTML = "<p>Could not load country data.</p>";
