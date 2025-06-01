@@ -1,4 +1,5 @@
 const countryList = document.getElementById("country-list");
+const filterBtn = document.querySelector(".filter");
 
 const fetchData = async () => {
 	try {
@@ -8,9 +9,17 @@ const fetchData = async () => {
 		}
 		const data = await res.json();
 		createList(data);
+		filterBtn.addEventListener("change", () => filterList(data));
 	} catch (error) {
 		console.log("Issue fetching lists", error);
 	}
+};
+
+const filterList = (data) => {
+	const filterValue = filterBtn.value;
+	const result = data.filter((item) => item.region === filterValue);
+	countryList.innerHTML = "";
+	createList(filterValue ? result : data);
 };
 
 const createList = (countries) => {

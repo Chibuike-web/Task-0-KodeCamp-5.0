@@ -71,12 +71,12 @@ section {
 	padding-bottom: 24px;
 	.search-input-container {
 		box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
-		margin-block-start: 32px;
 		padding-block: 16px;
 		padding-inline: 14px;
 		display: flex;
 		background-color: var(--input-bg);
 		max-inline-size: 500px;
+		width: 100%;
 		border-radius: 8px;
 		gap: 14px;
 		img {
@@ -101,6 +101,26 @@ section {
 			border: 1px solid red;
 		}
 	}
+}
+
+.wrapper {
+	margin-block-start: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.filter {
+	appearance: none;
+	outline: none;
+	border: none;
+	background-color: var(--input-bg);
+	width: 100%;
+	max-width: 250px;
+	height: 56px;
+	padding-inline: 16px;
+	box-shadow: 0px 4px 8px rgba(32, 44, 55, 0.1);
+	border-radius: 8px;
 }
 
 #country-list {
@@ -253,9 +273,10 @@ section {
 
 @media (max-width: 768px) {
 	nav header {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 16px;
+		h1 {
+			font-size: 16px;
+		}
+		font-size: 14px;
 	}
 
 	.search-input-container {
