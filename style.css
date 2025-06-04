@@ -19,6 +19,7 @@ button {
 	background: transparent;
 	outline: none;
 	border: none;
+	font-family: "Nunito Sans";
 }
 
 :root {
@@ -222,7 +223,7 @@ nav {
 
 .back-btn {
 	width: fit-content;
-	background-color: white;
+	background-color: var(--input-bg);
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
