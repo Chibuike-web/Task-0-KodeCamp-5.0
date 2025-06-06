@@ -5,7 +5,10 @@ let allCountries = [];
 
 const fetchData = async () => {
 	try {
-		const res = await fetch("https://restcountries.com/v3.1/all");
+		const res = await fetch(
+			"https://restcountries.com/v3.1/all?fields=name,cca3,flags,population,region,capital"
+		);
+
 		if (!res.ok) {
 			throw new Error("Issue fetching data");
 		}
@@ -67,17 +70,3 @@ const createList = (countries) => {
 fetchData();
 filterBtn.addEventListener("change", handleFilterAndSearch);
 searchInput.addEventListener("input", handleFilterAndSearch);
-
-const toggleTheme = document.querySelector(".toggle-theme");
-let isDarkMode = localStorage.getItem("darkMode") === "true";
-
-if (isDarkMode) {
-	document.body.classList.add("dark-mode", isDarkMode);
-}
-
-toggleTheme.addEventListener("click", function (e) {
-	e.preventDefault();
-	isDarkMode = !isDarkMode;
-	document.body.classList.toggle("dark-mode", isDarkMode);
-	localStorage.setItem("darkMode", isDarkMode);
-});
